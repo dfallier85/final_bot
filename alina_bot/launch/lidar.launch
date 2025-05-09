@@ -1,0 +1,9 @@
+<launch>
+  <node name="rplidar_node" pkg="rplidar_ros" type="rplidarNode" output="screen">
+    <param name="serial_port" value="/dev/ttyUSB0" />
+    <param name="serial_baudrate" value="115200" />
+    <param name="frame_id" value="lidar_link" />
+    <param name="angle_compensate" type="bool" value="true"/>
+  </node>
+</launch>
+

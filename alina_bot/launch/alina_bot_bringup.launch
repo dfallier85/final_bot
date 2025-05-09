@@ -1,0 +1,33 @@
+<launch>
+
+  <!-- Load the URDF robot model -->
+  <param name="robot_description" command="$(find xacro)/xacro '$(find alina_bot)/urdf/alina_bot_expandable.urdf.xacro'" />
+
+  <!-- Publish the robot state (joint positions, etc.) -->
+  <node name="robot_state_publisher" pkg="robot_state_publisher" type="robot_state_publisher" output="screen" />
+
+  <!-- Publish static transforms for lidar and IMU -->
+  <node pkg="tf" type="static_transform_publisher" name="lidar_tf" 
+        args="0 0 0.15 0 0 0 base_link lidar_link 100" />
+
+  <node pkg="tf" type="static_transform_publisher" name="imu_tf" 
+        args="0 0 0.1 0 0 0 base_link imu_link 100" />
+
+  <!-- Launch RViz with fixed frame set to 'map' -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-f map" output="screen" />
+
+  <!-- Keyboard-based pose publisher -->
+  <node name="keyboard_pose_publisher" pkg="alina_bot" type="keyboard_pose_publisher.py" output="screen" />
+  
+  <!-- EKF sensor fusion node -->
+<node name="ekf_se_odom" pkg="robot_localization" type="ekf_localization_node" output="screen">
+  <rosparam command="load" file="$(find alina_bot)/config/ekf.yaml" />
+  
+  
+</node>
+
+  <include file="$(find alina_bot)/launch/slam.launch" />
+
+
+</launch>
+

@@ -1,0 +1,13 @@
+<launch>
+  <!-- Launch RViz with fixed frame "map" -->
+  <node name="rviz" pkg="rviz" type="rviz" output="screen" args="-f map" />
+
+  <!-- Launch your keyboard-based pose publisher -->
+  <node name="keyboard_pose_publisher" pkg="alina_bot" type="keyboard_pose_publisher.py" output="screen" />
+
+  <!-- Optional: Run joy_node if a controller is plugged in -->
+  <!--
+  <node name="joy_node" pkg="joy" type="joy_node" output="screen" />
+  -->
+</launch>
+

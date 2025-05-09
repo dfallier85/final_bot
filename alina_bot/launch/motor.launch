@@ -1,0 +1,4 @@
+<launch>
+  <node name="motor_node" pkg="alina_bot" type="motor_node.py" output="screen"/>
+</launch>
+

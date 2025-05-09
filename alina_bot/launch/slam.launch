@@ -1,0 +1,8 @@
+<launch>
+  <!-- Start SLAM Toolbox -->
+  <node name="slam_toolbox" pkg="slam_toolbox" type="sync_slam_toolbox_node" output="screen">
+    <param name="use_sim_time" value="false"/>
+    <param name="slam_toolbox" value="true"/>
+  </node>
+</launch>
+

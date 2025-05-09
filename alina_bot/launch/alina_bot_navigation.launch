@@ -1,0 +1,29 @@
+<launch>
+  <!-- Load saved map -->
+  <arg name="map_file" default="$(find alina_bot)/maps/my_map.yaml"/>
+  <node name="map_server" pkg="map_server" type="map_server" args="$(arg map_file)" />
+
+  <!-- AMCL for localization -->
+  <node name="amcl" pkg="amcl" type="amcl" output="screen">
+    <param name="odom_frame_id" value="odom"/>
+    <param name="base_frame_id" value="base_link"/>
+    <param name="global_frame_id" value="map"/>
+    <param name="use_map_topic" value="true"/>
+    <param name="min_particles" value="500"/>
+    <param name="max_particles" value="2000"/>
+    <param name="update_min_d" value="0.2"/>
+    <param name="update_min_a" value="0.2"/>
+    <param name="resample_interval" value="1"/>
+    <param name="laser_max_range" value="8.0"/>
+    <param name="laser_lambda_short" value="0.1"/>
+    <param name="odom_model_type" value="diff"/>
+    <param name="odom_alpha1" value="0.2"/>
+    <param name="odom_alpha2" value="0.2"/>
+    <param name="odom_alpha3" value="0.2"/>
+    <param name="odom_alpha4" value="0.2"/>
+  </node>
+
+  <!-- RViz (optional if already launched) -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-f map" output="screen" />
+</launch>
+

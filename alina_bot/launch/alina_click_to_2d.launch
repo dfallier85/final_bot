@@ -1,0 +1,8 @@
+<launch>
+  <!-- Start RViz with an empty config -->
+  <node name="rviz" pkg="rviz" type="rviz" args="-d $(find rviz)/default.rviz" />
+
+  <!-- Run the alina_click_to_2d node -->
+  <node name="alina_click_to_2d" pkg="alina_bot" type="alina_click_to_2d" output="screen" />
+</launch>
+
